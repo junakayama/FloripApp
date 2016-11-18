@@ -5,12 +5,37 @@ package com.example.leon.floripapp;
  */
 
 public class PontoTuristico {
+    private int id;
     private String nome;
     private String descricao;
     private boolean pago;
     private String dataFuncionamento;
     private String horarioFuncionamento;
     private boolean favorito;
+
+    public void setPago(boolean pago) {
+        this.pago = pago;
+    }
+
+    public boolean isFavorito() {
+        return favorito;
+    }
+
+    public void setFavorito(boolean favorito) {
+        this.favorito = favorito;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isPago() {
+        return pago;
+    }
 
     public String getNome(){
         return nome;
@@ -28,14 +53,6 @@ public class PontoTuristico {
         this.descricao = descricao;
     }
 
-    public boolean getPago(){
-        return pago;
-    }
-
-    public void setPago(boolean pago){
-        this.pago = pago;
-    }
-
     public String getDataFuncionamento(){
         return dataFuncionamento;
     }
@@ -51,13 +68,4 @@ public class PontoTuristico {
     public void setHorarioFuncionamento(String horarioFuncionamento){
         this.horarioFuncionamento = horarioFuncionamento;
     }
-
-    public boolean getFavorito(){
-        return favorito;
-    }
-
-    public void setFavorito(boolean favorito) {
-        this.favorito = favorito;
-    }
-
 }
