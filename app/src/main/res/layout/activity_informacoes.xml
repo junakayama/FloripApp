@@ -39,12 +39,33 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
+        android:text="Horário de Funcionamento"
+        android:layout_width="150dp"
+        android:layout_height="300dp"
+        android:id="@+id/horarioFuncionamento"
+        android:layout_below="@+id/favorito"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp" />
+
+    <TextView
         android:text="Descricao"
         android:layout_width="150dp"
         android:layout_height="300dp"
-        android:id="@+id/descricaoa"
-        android:layout_centerVertical="true"
-        />
+        android:id="@+id/descricao"
+        android:layout_above="@+id/mapa"
+        android:layout_alignLeft="@+id/horarioFuncionamento"
+        android:layout_alignStart="@+id/horarioFuncionamento" />
+
+    <TextView
+        android:text="Data de Funcionamento"
+        android:layout_width="150dp"
+        android:layout_height="300dp"
+        android:id="@+id/dataFuncionamento"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/descricao" />
 
 
 </RelativeLayout>
