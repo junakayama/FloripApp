@@ -21,17 +21,12 @@ public class MainActivity extends AppCompatActivity {
         lista.setAdapter(adapter);
     }
 
-  /*  public void sendMessage(View view){
-//        Intent intent = new Intent(this,DisplayMessageActivity.class);
-//        EditText editText =(EditText) findViewById(R.id.edit_message);
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE,message);
+
+//    public void startMapsActivity(View view) {
 //
-//        Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
-        Intent mapIntent = new Intent(this,MapsActivity.class);
-//        mapIntent.setPackage("com.google.android.apps.maps");
+//        Intent mapIntent = new Intent(this, MapsActivity.class);
+//
+//        startActivity(mapIntent);
+//    }
 
-        startActivity(mapIntent);
-
-    }*/
 }
