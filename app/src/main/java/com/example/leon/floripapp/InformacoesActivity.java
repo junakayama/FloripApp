@@ -1,6 +1,7 @@
 package com.example.leon.floripapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -36,6 +37,15 @@ public class InformacoesActivity extends AppCompatActivity {
         dataFuncionamento.setText(pontoTuristico.getDataFuncionamento());
         descricao.setText(pontoTuristico.getDescricao());
 
+        mapsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q="+pontoTuristico.getNome());
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
 
         favorito.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,5 +57,6 @@ public class InformacoesActivity extends AppCompatActivity {
             }
         });
     }
+
 }
 
