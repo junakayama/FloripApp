@@ -1,5 +1,6 @@
 package com.example.leon.floripapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,7 +16,7 @@ import java.util.List;
 public class PontoTuristicoDAO extends SQLiteOpenHelper {
 
     public PontoTuristicoDAO(Context context) {
-        super(context, "Guia Turistico", null, 1);
+        super(context, "GuiaTuristico", null, 1);
     }
 
     @Override
@@ -49,11 +50,46 @@ public class PontoTuristicoDAO extends SQLiteOpenHelper {
             pontoTuristico.setPago(c.getInt(c.getColumnIndex("pago")) > 0);
             pontoTuristico.setDataFuncionamento(c.getString(c.getColumnIndex("dataFuncionamento")));
             pontoTuristico.setHorarioFuncionamento(c.getString(c.getColumnIndex("horarioFuncionamento")));
-            pontoTuristico.setFavorito(c.getInt(c.getColumnIndex("favorito")) > 0);
+            pontoTuristico.setFavorito((c.getInt(c.getColumnIndex("favorito"))) > 0);
 
             pontosTuristicos.add(pontoTuristico);
         }
         c.close();
         return pontosTuristicos;
     }
+
+    public List<PontoTuristico> buscaPontosTuristicosFavoritos(){
+        SQLiteDatabase database = getReadableDatabase();
+        Cursor c = database.rawQuery("SELECT * From PontosTuristicos order by favorito desc", null);
+
+        List<PontoTuristico> pontosTuristicos =  new ArrayList<PontoTuristico>();
+        while(c.moveToNext()){
+            PontoTuristico pontoTuristico = new PontoTuristico();
+            pontoTuristico.setId(c.getInt(c.getColumnIndex("id")));
+            pontoTuristico.setNome(c.getString(c.getColumnIndex("nome")));
+            pontoTuristico.setDescricao(c.getString(c.getColumnIndex("descricao")));
+            pontoTuristico.setPago(c.getInt(c.getColumnIndex("pago")) > 0);
+            pontoTuristico.setDataFuncionamento(c.getString(c.getColumnIndex("dataFuncionamento")));
+            pontoTuristico.setHorarioFuncionamento(c.getString(c.getColumnIndex("horarioFuncionamento")));
+            pontoTuristico.setFavorito((c.getInt(c.getColumnIndex("favorito"))) > 0);
+
+            pontosTuristicos.add(pontoTuristico);
+        }
+        c.close();
+        return pontosTuristicos;
+    }
+
+    public void salvaAlteracao(PontoTuristico pontoTuristico){
+        SQLiteDatabase database = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        if(pontoTuristico.isFavorito()) {
+            values.put("favorito",1);
+        }else{
+            values.put("favorito",0);
+        }
+        String[] params={String.valueOf(pontoTuristico.getId())};
+        database.update("PontosTuristicos",values,"id = ?",params);
+    }
+
 }

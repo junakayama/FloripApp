@@ -1,10 +1,13 @@
 package com.example.leon.floripapp;
 
+import java.io.Serializable;
+
 /**
  * Created by julia on 18/11/16.
  */
 
-public class PontoTuristico {
+public class PontoTuristico implements Serializable {
+
     private int id;
     private String nome;
     private String descricao;
@@ -37,35 +40,40 @@ public class PontoTuristico {
         return pago;
     }
 
-    public String getNome(){
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome){
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public String getDescricao(){
+    public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(String descricao){
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-    public String getDataFuncionamento(){
+    public String getDataFuncionamento() {
         return dataFuncionamento;
     }
 
-    public void setDataFuncionamento(String dataFuncionamento){
+    public void setDataFuncionamento(String dataFuncionamento) {
         this.dataFuncionamento = dataFuncionamento;
     }
 
-    public String getHorarioFuncionamento(){
+    public String getHorarioFuncionamento() {
         return horarioFuncionamento;
     }
 
-    public void setHorarioFuncionamento(String horarioFuncionamento){
+    public void setHorarioFuncionamento(String horarioFuncionamento) {
         this.horarioFuncionamento = horarioFuncionamento;
+    }
+
+    @Override
+    public String toString() {
+        return getNome();
     }
 }
