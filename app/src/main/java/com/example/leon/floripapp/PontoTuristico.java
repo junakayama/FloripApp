@@ -1,6 +1,7 @@
 package com.example.leon.floripapp;
 
 import java.io.Serializable;
+import java.nio.ByteBuffer;
 
 /**
  * Created by julia on 18/11/16.
@@ -15,6 +16,9 @@ public class PontoTuristico implements Serializable {
     private String dataFuncionamento;
     private String horarioFuncionamento;
     private boolean favorito;
+    private byte[] image;
+
+
 
 
     public void setPago(boolean pago) {
@@ -73,8 +77,17 @@ public class PontoTuristico implements Serializable {
         this.horarioFuncionamento = horarioFuncionamento;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return getNome();
     }
+
 }

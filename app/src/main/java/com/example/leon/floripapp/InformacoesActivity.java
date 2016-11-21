@@ -1,6 +1,8 @@
 package com.example.leon.floripapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +30,7 @@ public class InformacoesActivity extends AppCompatActivity {
         TextView horarioFuncionamento = (TextView) findViewById((R.id.horarioFuncionamento));
         TextView dataFuncionamento = (TextView) findViewById((R.id.dataFuncionamento));
         TextView descricao = (TextView) findViewById((R.id.descricao));
+        ImageView image = (ImageView) findViewById(R.id.image);
 
         Intent intent = getIntent();
         pontoTuristico = (PontoTuristico) intent.getSerializableExtra("pontoTuristico");
@@ -36,6 +40,8 @@ public class InformacoesActivity extends AppCompatActivity {
         horarioFuncionamento.setText(pontoTuristico.getHorarioFuncionamento());
         dataFuncionamento.setText(pontoTuristico.getDataFuncionamento());
         descricao.setText(pontoTuristico.getDescricao());
+        Bitmap bitmap = BitmapFactory.decodeByteArray(pontoTuristico.getImage(), 0, pontoTuristico.getImage().length);
+        image.setImageBitmap(bitmap);
 
         mapsButton.setOnClickListener(new View.OnClickListener() {
             @Override
