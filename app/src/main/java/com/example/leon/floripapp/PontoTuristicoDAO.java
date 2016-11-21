@@ -24,7 +24,7 @@ public class PontoTuristicoDAO extends SQLiteOpenHelper {
         String sql = "CREATE TABLE PontosTuristicos(id INTEGER PRIMARY KEY, nome TEXT NOT NULL, descricao TEXT, pago BOOLEAN, dataFuncionamento TEXT, horarioFuncionamento TEXT, favorito BOOLEAN);";
         sqLiteDatabase.execSQL(sql);
 
-        String insereDados = "INSERT INTO PontosTuristicos VALUES (1, 'Joaquina', 'Uma praia muito massa', 0, 'sempre funcionando', 'sem hora', 0)," +
+        String insereDados = "INSERT INTO PontosTuristicos VALUES (1, 'Praia Joaquina', 'Uma praia muito massa', 0, 'sempre funcionando', 'sem hora', 0)," +
                 "(2, 'Lagoa da Conceição', 'altas lagoa que na real é uma laguna', 0, 'ta sempre lá', 'all day all night', 1)," +
                 "(3, 'UFSC', 'Universidade Federal de SC', 0, 'dias de semana', 'até as 10', 0);";
         sqLiteDatabase.execSQL(insereDados);
