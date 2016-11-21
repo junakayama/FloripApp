@@ -6,6 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +28,26 @@ public class PontoTuristicoDAO extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "CREATE TABLE PontosTuristicos(id INTEGER PRIMARY KEY, nome TEXT NOT NULL, descricao TEXT, pago BOOLEAN, dataFuncionamento TEXT, horarioFuncionamento TEXT, favorito BOOLEAN);";
+        String sql = "CREATE TABLE PontosTuristicos(id INTEGER PRIMARY KEY, nome TEXT NOT NULL, descricao TEXT, pago BOOLEAN, dataFuncionamento TEXT, horarioFuncionamento TEXT, favorito BOOLEAN, image BLOB);";
         sqLiteDatabase.execSQL(sql);
 
         String insereDados = "INSERT INTO PontosTuristicos VALUES (1, 'Joaquina', 'Uma praia muito massa', 0, 'sempre funcionando', 'sem hora', 0)," +
-                "(2, 'Lagoa da Conceição', 'altas lagoa que na real é uma laguna', 0, 'ta sempre lá', 'all day all night', 1)," +
+                "(2, 'Lagoa da Conceição', 'altas lagoa que na real é uma laguna', 0, 'ta sempre lá', 'all day all night', 0)," +
                 "(3, 'UFSC', 'Universidade Federal de SC', 0, 'dias de semana', 'até as 10', 0);";
+        try {
+            URL url1 = new URL ("https://i.ytimg.com/vi/KgA9hOvtXQo/maxresdefault.jpg");
+            String insereImagem1 = imagem(url1);
+            sqLiteDatabase.execSQL(insereImagem1);
+            URL url2 = new URL ("http://www.feriasbrasil.com.br/fotosfb/169184218-XG.jpg");
+            String insereImagem2 = imagem(url2);
+            sqLiteDatabase.execSQL(insereImagem2);
+            URL url3 = new URL ("http://galeria.ufsc.br/d/122728-2/Entrada%20Trindade%20-%20Foto%20Henrique%20Almeida.jpg");
+            String insereImagem3 = imagem(url3);
+            sqLiteDatabase.execSQL(insereImagem3);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
         sqLiteDatabase.execSQL(insereDados);
     }
 
@@ -52,6 +73,8 @@ public class PontoTuristicoDAO extends SQLiteOpenHelper {
             pontoTuristico.setHorarioFuncionamento(c.getString(c.getColumnIndex("horarioFuncionamento")));
             pontoTuristico.setFavorito((c.getInt(c.getColumnIndex("favorito"))) > 0);
 
+            pontoTuristico.setImage(c.getBlob(c.getColumnIndex("image")));
+
             pontosTuristicos.add(pontoTuristico);
         }
         c.close();
@@ -72,6 +95,7 @@ public class PontoTuristicoDAO extends SQLiteOpenHelper {
             pontoTuristico.setDataFuncionamento(c.getString(c.getColumnIndex("dataFuncionamento")));
             pontoTuristico.setHorarioFuncionamento(c.getString(c.getColumnIndex("horarioFuncionamento")));
             pontoTuristico.setFavorito((c.getInt(c.getColumnIndex("favorito"))) > 0);
+            pontoTuristico.setImage(c.getBlob(c.getColumnIndex("image")));
 
             pontosTuristicos.add(pontoTuristico);
         }
@@ -92,4 +116,41 @@ public class PontoTuristicoDAO extends SQLiteOpenHelper {
         database.update("PontosTuristicos",values,"id = ?",params);
     }
 
+    public String imagem(URL url){
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+            URLConnection ucon = url.openConnection();
+            InputStream is = ucon.getInputStream();
+            BufferedInputStream bis = new BufferedInputStream(is,128);
+            byte[] bytes = new byte[128];
+            ByteBuffer barb= ByteBuffer.wrap(bytes);
+
+            int current = 0;
+            while ((current = bis.read()) != -1) {
+                barb.put((byte) current);
+            }
+
+            ContentValues filedata= new ContentValues();
+
+            bytes = new byte[barb.remaining()];
+            barb.get(bytes, 0, bytes.length);
+
+            barb.clear();
+
+            bytes = new byte[barb.capacity()];
+
+            barb.get(bytes, 0, bytes.length);
+
+
+            filedata.put("image", bytes);
+
+            String sql = "INSERT INTO PontosTuristicos (image) VALUES (" + filedata + ")";
+
+            return sql;
+
+        }catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
