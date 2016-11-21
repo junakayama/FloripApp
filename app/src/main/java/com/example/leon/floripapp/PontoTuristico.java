@@ -16,6 +16,7 @@ public class PontoTuristico implements Serializable {
     private String horarioFuncionamento;
     private boolean favorito;
 
+
     public void setPago(boolean pago) {
         this.pago = pago;
     }
