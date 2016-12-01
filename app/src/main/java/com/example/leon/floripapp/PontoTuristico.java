@@ -20,6 +20,7 @@ public class PontoTuristico implements Serializable {
 
 
 
+
     public void setPago(boolean pago) {
         this.pago = pago;
     }
