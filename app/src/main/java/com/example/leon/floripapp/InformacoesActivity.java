@@ -30,7 +30,6 @@ public class InformacoesActivity extends AppCompatActivity {
         TextView horarioFuncionamento = (TextView) findViewById((R.id.horarioFuncionamento));
         TextView dataFuncionamento = (TextView) findViewById((R.id.dataFuncionamento));
         TextView descricao = (TextView) findViewById((R.id.descricao));
-        ImageView image = (ImageView) findViewById(R.id.image);
 
         Intent intent = getIntent();
         pontoTuristico = (PontoTuristico) intent.getSerializableExtra("pontoTuristico");
@@ -40,8 +39,6 @@ public class InformacoesActivity extends AppCompatActivity {
         horarioFuncionamento.setText(pontoTuristico.getHorarioFuncionamento());
         dataFuncionamento.setText(pontoTuristico.getDataFuncionamento());
         descricao.setText(pontoTuristico.getDescricao());
-        Bitmap bitmap = BitmapFactory.decodeByteArray(pontoTuristico.getImage(), 0, pontoTuristico.getImage().length);
-        image.setImageBitmap(bitmap);
 
         mapsButton.setOnClickListener(new View.OnClickListener() {
             @Override

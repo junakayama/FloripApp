@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_informacoes"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.example.leon.floripapp.InformacoesActivity">
 
     <CheckBox
         android:text="Favorita"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:id="@+id/favorito"
@@ -21,14 +18,29 @@
         android:textAppearance="?android:textAppearanceLarge"
         />
 
-
     <TextView
         android:text="Ponto Turístico"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="53dp"
         android:id="@+id/nome" />
 
+    <TextView
+        android:text="Horário de Funcionamento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/horarioFuncionamento"/>
+
+    <TextView
+        android:text="Descricao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/descricao"/>
+
+    <TextView
+        android:text="Data de Funcionamento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dataFuncionamento" />
 
     <Button
         android:text="Mapa"
@@ -38,41 +50,4 @@
         android:layout_marginBottom="31dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="Horário de Funcionamento"
-        android:layout_width="150dp"
-        android:layout_height="300dp"
-        android:id="@+id/horarioFuncionamento"
-        android:layout_below="@+id/favorito"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="14dp"
-        android:layout_marginEnd="14dp"
-        android:layout_alignBottom="@+id/nome" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/imagem"/>
-
-    <TextView
-        android:text="Descricao"
-        android:layout_width="150dp"
-        android:layout_height="300dp"
-        android:id="@+id/descricao"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/horarioFuncionamento"
-        android:layout_alignStart="@+id/horarioFuncionamento" />
-
-    <TextView
-        android:text="Data de Funcionamento"
-        android:layout_width="150dp"
-        android:layout_height="300dp"
-        android:id="@+id/dataFuncionamento"
-        android:layout_below="@+id/horarioFuncionamento"
-        android:layout_alignLeft="@+id/descricao"
-        android:layout_alignStart="@+id/descricao" />
-
-
-</RelativeLayout>
+</LinearLayout>
